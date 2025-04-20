@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Payment</title>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .payment-container {
+            background: #222;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 8px;
+        }
+
+        .confirm {
+            background: #D32F2F;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .success-message {
+            color: #4CAF50;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Payment Page</h1>
+    <div class="payment-container">
+        <p>Amount to Pay: ₹<span id="final-amount">0</span></p>
+        <button class="confirm">Confirm Payment</button>
+        <p id="success-message" class="success-message" style="display: none;"></p>
+    </div>
+
+    <script>
+        let totalAmount = 0;
+        fetch("/getAmount", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        })
+        .then(response => response.json())
+        .then(data => {
+            totalAmount = data.totalAmount;  
+            document.getElementById("final-amount").textContent = totalAmount;
+        })
+        .catch(error => console.error("Error fetching amount:", error));
+        document.querySelector(".confirm").addEventListener("click", function() {
+            const successMessage = `Order completed successfully. Amount paid: ₹${totalAmount}`;
+            document.getElementById("success-message").textContent = successMessage;
+            document.getElementById("success-message").style.display = "block";
+        });
+    </script>
+
+</body>
+</html>

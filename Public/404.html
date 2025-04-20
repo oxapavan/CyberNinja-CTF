@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Not Found</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #0D0D0D;
+            color: #E0E0E0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 80px;
+            font-weight: 600;
+            letter-spacing: 5px;
+            color: #D32F2F;
+        }
+
+        p {
+            font-size: 22px;
+            color: #A0A0A0;
+            margin: 15px 0;
+        }
+
+        .error-message {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 18px;
+            color: #E0E0E0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 18px;
+            background: #D32F2F;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background: #A30000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p class="error-message">"Even SHIELD couldn't locate this page."</p>
+        <p>The page you're looking for might have been snapped out of existence.</p>
+        <a href="index.html" class="btn">Return to Safety</a>
+    </div>
+</body>
+</html>

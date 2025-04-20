@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      text-align: center;
+      font-family: sans-serif;
+    }
+    .cart-container {
+      margin-top: 100px;
+    }
+    .cart-items {
+      margin: auto;
+      max-width: 600px;
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .cart-items li {
+      margin-bottom: 10px;
+      list-style: none;
+      padding: 8px;
+      background: #333;
+      border-radius: 4px;
+    }
+    .qty-btn {
+      background: #444;
+      color: white;
+      border: none;
+      padding: 3px 8px;
+      margin-left: 5px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .checkout {
+      background: #D32F2F;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Cart</h1>
+  <div class="cart-container">
+    <ul class="cart-items" id="cart-items"></ul>
+    <p>Total: ₹<span id="total-price">0</span></p>
+    <button class="checkout" onclick="checkout()">Checkout</button>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      let cartList = document.getElementById("cart-items");
+      cartList.innerHTML = "";
+      let totalPrice = 0;
+
+      cart.forEach((item, index) => {
+        if (!item.quantity) {
+          item.quantity = 1;
+        }
+        const itemTotal = item.price * item.quantity;
+        totalPrice += itemTotal;
+
+        let listItem = document.createElement("li");
+        listItem.innerHTML = `
+          ${item.name} - ₹${item.price} x ${item.quantity} = ₹${itemTotal}
+          <button class="qty-btn" onclick="changeQuantity(${index}, 1)">+</button>
+          <button class="qty-btn" onclick="changeQuantity(${index}, -1)">-</button>
+        `;
+        cartList.appendChild(listItem);
+      });
+
+      document.getElementById("total-price").textContent = totalPrice;
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function changeQuantity(index, change) {
+      cart[index].quantity = (cart[index].quantity || 1) + change;
+      if (cart[index].quantity < 1) {
+        cart.splice(index, 1);
+      }
+      renderCart();
+    }
+
+    function checkout() {
+      let total = document.getElementById("total-price").textContent;
+      fetch("/setAmount", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ totalAmount: total }) 
+    })
+    .then(() => {
+        window.location.href = "payment"; 
+    })
+    .catch(error => console.error("Error sending amount:", error));
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

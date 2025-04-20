@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Denied - Shield Protocol</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #ff4d4d;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid #ff4d4d;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff4d4d;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #ff0000;
+            color: white;
+        }
+        .glitch {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff4d4d;
+            animation: glitch 1s infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px red; }
+            25% { text-shadow: -2px -2px red; }
+            50% { text-shadow: 2px -2px red; }
+            75% { text-shadow: -2px 2px red; }
+            100% { text-shadow: 2px 2px red; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ACCESS DENIED</h1>
+        <p><span class="glitch">"Nice Try, Rookie!"</span></p>
+        <p>You thought you could just waltz in here like Tony Stark at a press conference?  
+           Nah, this panel is for those who know their way around the shadows.</p>
+        <p><b>Error Code:</b> 403 - Forbidden by S.H.I.E.L.D Protocol</p>
+        <p>Maybe next time, bring your credentials...  
+           Until then, stay in the spectator zone.</p>
+
+        <a href="/" class="btn">Return to Safety</a>
+    </div>
+
+</body>
+</html>
